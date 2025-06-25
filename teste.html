@@ -2,70 +2,92 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Validação Premium</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 30px auto; padding: 20px; }
+    input, button { font-size: 1.1rem; padding: 10px; margin: 5px 0; width: 100%; }
+    #resultado { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
 <body>
   <h2>Validação Premium</h2>
 
-  <!-- Campo para o nome (ex: mozart) -->
-  <label>Digite seu nome (premium):</label><br />
-  <input type="text" id="nomeInput" placeholder="ex: mozart" /><br />
+  <label for="nomeInput">Digite seu nome de usuário:</label>
+  <input type="text" id="nomeInput" placeholder="ex: mozart" />
 
-  <!-- Botão para validar nome + ID -->
-  <button onclick="validarPremium()">Validar Premium</button>
-  <p id="resultado"></p>
+  <button id="mostrarIDBtn">Mostrar meu ID</button>
+  <input type="text" id="deviceIdInput" readonly placeholder="Seu ID aparecerá aqui" />
 
-  <hr>
+  <button id="validarBtn">Validar Premium</button>
 
-  <h3>Identificação do seu aparelho</h3>
-  <button onclick="mostrarID()">Mostrar meu ID</button><br />
-  <input type="text" id="deviceIDBox" readonly style="width: 400px;" /><br />
-  <small>Copie este código e envie para o desenvolvedor para liberação anual</small>
+  <div id="resultado"></div>
 
-  <script>
-    // URLs reais dos arquivos no GitHub
-    const urlNomes = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-premium.txt';
-    const urlIDs = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-logados.txt';
+<script>
+  // URLs dos arquivos no GitHub (atenção para o raw)
+  const urlNomes = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-premium.txt';
+  const urlIDs = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-logados.txt';
 
-    // Simulação do ID do aparelho (em app Android real você usará o Android ID)
-    function getDeviceID() {
-      // Substitua por um ID real durante os testes
-      return 'AAAAAAA-1111-BBBB-2222-CCCCCC-3333-DDDDDD-4444';
-    }
-
-    async function fetchText(url) {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Erro ao buscar arquivo: ' + url);
-      return response.text();
-    }
-
-    async function validarPremium() {
-      const nome = document.getElementById('nomeInput').value.trim().toLowerCase();
-      const resultadoEl = document.getElementById('resultado');
-      resultadoEl.textContent = 'Validando...';
-
-      try {
-        const [nomesTxt, idsTxt] = await Promise.all([fetchText(urlNomes), fetchText(urlIDs)]);
-
-        const nomes = nomesTxt.split('\n').map(n => n.trim().toLowerCase());
-        const ids = idsTxt.split('\n').map(i => i.trim());
-
-        const deviceID = getDeviceID();
-
-        if (nomes.includes(nome) && ids.includes(deviceID)) {
-          resultadoEl.textContent = '✅ Premium liberado!';
-        } else {
-          resultadoEl.textContent = '❌ Nome ou dispositivo não autorizado.';
-        }
-      } catch (err) {
-        resultadoEl.textContent = '⚠️ Erro ao validar: ' + err.message;
+  // Gera ou recupera o ID único do dispositivo no localStorage
+  function getDeviceID() {
+    let id = localStorage.getItem('device_id');
+    if (!id) {
+      if (crypto.randomUUID) {
+        id = crypto.randomUUID();
+      } else {
+        // fallback simples caso crypto.randomUUID não exista
+        id = 'id-' + Math.random().toString(36).substr(2, 9);
       }
+      localStorage.setItem('device_id', id);
     }
+    return id;
+  }
 
-    function mostrarID() {
+  // Função para buscar texto dos arquivos
+  async function fetchText(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Erro ao buscar ' + url);
+    return await response.text();
+  }
+
+  // Exibe o ID no campo para o usuário copiar
+  document.getElementById('mostrarIDBtn').addEventListener('click', () => {
+    const id = getDeviceID();
+    const deviceIdInput = document.getElementById('deviceIdInput');
+    deviceIdInput.value = id;
+    deviceIdInput.select();
+    deviceIdInput.setSelectionRange(0, 99999); // Para mobile
+    document.execCommand('copy'); // Copia automaticamente
+    alert('Seu ID foi copiado para a área de transferência.\nEnvie para o administrador para liberar o premium.');
+  });
+
+  // Valida o usuário e o ID
+  document.getElementById('validarBtn').addEventListener('click', async () => {
+    const nome = document.getElementById('nomeInput').value.trim().toLowerCase();
+    const resultadoEl = document.getElementById('resultado');
+    resultadoEl.textContent = 'Validando...';
+
+    try {
+      const [nomesTxt, idsTxt] = await Promise.all([fetchText(urlNomes), fetchText(urlIDs)]);
+      const nomes = nomesTxt.split('\n').map(n => n.trim().toLowerCase());
+      const ids = idsTxt.split('\n').map(i => i.trim());
       const deviceID = getDeviceID();
-      document.getElementById('deviceIDBox').value = deviceID;
+
+      // Debug no console (opcional)
+      console.log("Nome digitado:", nome);
+      console.log("Device ID:", deviceID);
+      console.log("Lista de nomes:", nomes);
+      console.log("Lista de IDs:", ids);
+
+      if (nomes.includes(nome) && ids.includes(deviceID)) {
+        resultadoEl.textContent = '✅ Premium liberado!';
+      } else {
+        resultadoEl.textContent = '❌ Nome ou dispositivo não autorizado.';
+      }
+    } catch (err) {
+      resultadoEl.textContent = '⚠️ Erro ao validar: ' + err.message;
     }
-  </script>
+  });
+</script>
 </body>
 </html>
