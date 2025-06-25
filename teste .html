@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Validação Premium</title>
+</head>
+<body>
+  <h2>Validação Premium</h2>
+
+  <!-- Campo para o nome (ex: mozart) -->
+  <label>Digite seu nome (premium):</label><br />
+  <input type="text" id="nomeInput" placeholder="ex: mozart" /><br />
+
+  <!-- Botão para validar nome + ID -->
+  <button onclick="validarPremium()">Validar Premium</button>
+  <p id="resultado"></p>
+
+  <hr>
+
+  <h3>Identificação do seu aparelho</h3>
+  <button onclick="mostrarID()">Mostrar meu ID</button><br />
+  <input type="text" id="deviceIDBox" readonly style="width: 400px;" /><br />
+  <small>Copie este código e envie para o desenvolvedor para liberação anual</small>
+
+  <script>
+    // URLs reais dos arquivos no GitHub
+    const urlNomes = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-premium.txt';
+    const urlIDs = 'https://raw.githubusercontent.com/GleberLorran/music-app-users/main/usuarios-logados.txt';
+
+    // Simulação do ID do aparelho (em app Android real você usará o Android ID)
+    function getDeviceID() {
+      // Substitua por um ID real durante os testes
+      return 'AAAAAAA-1111-BBBB-2222-CCCCCC-3333-DDDDDD-4444';
+    }
+
+    async function fetchText(url) {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Erro ao buscar arquivo: ' + url);
+      return response.text();
+    }
+
+    async function validarPremium() {
+      const nome = document.getElementById('nomeInput').value.trim().toLowerCase();
+      const resultadoEl = document.getElementById('resultado');
+      resultadoEl.textContent = 'Validando...';
+
+      try {
+        const [nomesTxt, idsTxt] = await Promise.all([fetchText(urlNomes), fetchText(urlIDs)]);
+
+        const nomes = nomesTxt.split('\n').map(n => n.trim().toLowerCase());
+        const ids = idsTxt.split('\n').map(i => i.trim());
+
+        const deviceID = getDeviceID();
+
+        if (nomes.includes(nome) && ids.includes(deviceID)) {
+          resultadoEl.textContent = '✅ Premium liberado!';
+        } else {
+          resultadoEl.textContent = '❌ Nome ou dispositivo não autorizado.';
+        }
+      } catch (err) {
+        resultadoEl.textContent = '⚠️ Erro ao validar: ' + err.message;
+      }
+    }
+
+    function mostrarID() {
+      const deviceID = getDeviceID();
+      document.getElementById('deviceIDBox').value = deviceID;
+    }
+  </script>
+</body>
+</html>
