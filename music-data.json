@@ -4,7 +4,7 @@
   "baseUrl": "https://cdinfluences.netlify.app",
   "bands": {
     "Led Zeppelin": {
-      "demo": "https://cdinfluences.netlify.app/demo/Track_No01demo.mp3",
+      "demo": "https://raw.githubusercontent.com/GleberLorran/music-app-users/main/base_final_solo.mp3",
       "original": "https://cdinfluences.netlify.app/original/Track_No01org.mp3",
       "premium": "https://cdinfluences.netlify.app/cover/Track_01cover.mp3"
     },
