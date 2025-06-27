@@ -1,1 +1,57 @@
-
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-27T10:00:00Z",
+  "baseUrl": "https://cdinfluences.netlify.app",
+  "bands": {
+    "Led Zeppelin": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No01demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No01org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_01cover.mp3"
+    },
+    "Deep Purple": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No02demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No02org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_02cover.mp3"
+    },
+    "Queen": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No03demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No03org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_03cover.mp3"
+    },
+    "Jeef Back": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No04demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No04org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_04cover.mp3"
+    },
+    "Yngwie Malmsteen": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No05demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No05org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_05cover.mp3"
+    },
+    "Vinnie Moore": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No06demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No06org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_06cover.mp3"
+    },
+    "Blues saraceno": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No07demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No07org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_07cover.mp3"
+    },
+    "Joe Satriani": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No08demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No08org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_08cover.mp3"
+    },
+    "Steve Vai": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No09demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No09org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_09cover.mp3"
+    },
+    "Sebastian Bach": {
+      "demo": "https://cdinfluences.netlify.app/demo/Track_No10demo.mp3",
+      "original": "https://cdinfluences.netlify.app/original/Track_No10org.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_10cover.mp3"
+    }
+  }
+}
