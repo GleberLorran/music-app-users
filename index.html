@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Player de Músicas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      margin-top: 40px;
+      color: #333;
+    }
+    .track {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reprodutor de Músicas</h1>
+
+  <div id="cover-section">
+    <h2>🎸 Covers</h2>
+  </div>
+
+  <div id="demo-section">
+    <h2>🎤 Demos</h2>
+  </div>
+
+  <div id="original-section">
+    <h2>🎼 Originais</h2>
+  </div>
+
+  <script>
+    function addTracks(folder, prefix, extension, count, containerId) {
+      const container = document.getElementById(containerId);
+      for (let i = 1; i <= count; i++) {
+        const faixa = i < 10 ? `0${i}` : `${i}`;
+        const fileName = `${prefix}${faixa}${extension}`;
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.src = `${folder}/${fileName}`;
+        audio.className = "track";
+
+        const label = document.createElement('p');
+        label.textContent = `Faixa ${i}: ${fileName}`;
+
+        container.appendChild(label);
+        container.appendChild(audio);
+      }
+    }
+
+    // Cover: Track_01cover.mp3 até Track_10cover.mp3
+    addTracks('cover', 'Track_', 'cover.mp3', 10, 'cover-section');
+
+    // Demo: Track_No01demo.mp3 até Track_No10demo.mp3
+    addTracks('demo', 'Track_No', 'demo.mp3', 10, 'demo-section');
+
+    // Original: Track_No01org.mp3 até Track_No10org.mp3
+    addTracks('original', 'Track_No', 'org.mp3', 10, 'original-section');
+  </script>
+</body>
+</html>
