@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-01-27T10:00:00Z",
+  "lastUpdated": "2025-07-28T15:00:00Z",
   "baseUrl": "https://cdinfluences.netlify.app",
   "bands": {
     "Led Zeppelin": {
@@ -52,6 +52,46 @@
       "demo": "https://cdinfluences.netlify.app/demo/Track_No10demo.mp3",
       "original": "https://cdinfluences.netlify.app/original/Track_No10org.mp3",
       "premium": "https://cdinfluences.netlify.app/cover/Track_10cover.mp3"
+    },
+    "Música 01": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No01demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No01full.mp3"
+    },
+    "Música 02": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No02demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No02full.mp3"
+    },
+    "Música 03": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No03demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No03full.mp3"
+    },
+    "Música 04": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No04demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No04full.mp3"
+    },
+    "Música 05": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No05demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No05full.mp3"
+    },
+    "Música 06": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No06demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No06full.mp3"
+    },
+    "Música 07": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No07demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No07full.mp3"
+    },
+    "Música 08": {
+      "demo": "https://music-app-users.vercel.app/demo2/Track_No08demo.mp3",
+      "original": "",
+      "premium": "https://music-app-users.vercel.app/full2/Track_No08full.mp3"
     }
   }
 }
