@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-07-28T15:30:00Z",
+  "lastUpdated": "2025-07-30T01:00:00Z",
   "baseUrl": "https://cdinfluences.netlify.app",
   "bands": {
     "Led Zeppelin": {
@@ -53,6 +53,7 @@
       "original": "https://cdinfluences.netlify.app/original/Track_No10org.mp3",
       "premium": "https://cdinfluences.netlify.app/cover/Track_10cover.mp3"
     },
+
     "Música 01": {
       "demo": "https://music-app-users.vercel.app/demo2/Track_No01demo.mp3",
       "premium": "https://music-app-users.vercel.app/full2/Track_No01full.mp3"
@@ -84,6 +85,47 @@
     "Música 08": {
       "demo": "https://music-app-users.vercel.app/demo2/Track_No08demo.mp3",
       "premium": "https://music-app-users.vercel.app/full2/Track_No08full.mp3"
+    },
+
+    "MEU SOCORRO VEM DE DEUS": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No01demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_01cover.mp3"
+    },
+    "COISAS DO CORAÇÃO": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No02demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_02cover.mp3"
+    },
+    "UM NOVO DIA": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No03demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_03cover.mp3"
+    },
+    "O SANGUE DE UM REI": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No04demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_04cover.mp3"
+    },
+    "QUANDO FALTAM FORÇAS PRA LUTAR": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No05demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_05cover.mp3"
+    },
+    "ANTES DE TI": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No06demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_06cover.mp3"
+    },
+    "O CAMINHO": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No07demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_07cover.mp3"
+    },
+    "NÃO RETROCEDEREI": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No08demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_08cover.mp3"
+    },
+    "POR AMOR": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No09demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_09cover.mp3"
+    },
+    "PARABÉNS PRA VC": {
+      "demo": "https://cdinfluences.netlify.app/demo3/Track_No10demo.mp3",
+      "premium": "https://cdinfluences.netlify.app/cover/Track_10cover.mp3"
     }
   }
 }
