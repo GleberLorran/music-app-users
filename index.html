@@ -1,53 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Redirecionamento Automático</title>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Redirecionando…</title>
+  <style>
     html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
+      height: 100%; margin: 0;
+      background: #000 no-repeat center center / cover;
+      /* Imagem 9:16 inicial */
+      background-image: url("FUNDO_OK.jpg"); /* <-- 1) TROQUE AQUI */
     }
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-size: cover;
-        background-position: center;
-        font-family: Arial, sans-serif;
-        color: #fff;
-    }
-</style>
+  </style>
 </head>
 <body>
 <script>
-    // Imagem inicial de fundo (9:16)
-    document.body.style.backgroundImage = "url('fundo1.jpg')";
+  // 2) TROQUE PELO SEU DESTINO
+  const DESTINO = "https://seu-destino.com";
+  const TEMPO_LIMITE_MS = 4000; // tempo máximo para decidir (4s)
 
-    // Link de redirecionamento
-    const url = "https://cdinfluences2.netlify.app/"; // Substitua pelo seu link real
+  // 3) TROQUE PELA SUA IMAGEM 9:16 DE FALHA
+  const IMG_FALHA = "FALHA.jpg";
 
-    // Tentar redirecionar após 1 segundo
-    setTimeout(() => {
-        try {
-            window.location.href = url;
-        } catch (e) {
-            console.log("Redirecionamento falhou:", e);
-            // Se falhar, troca a imagem de fundo
-            document.body.style.backgroundImage = "url('fundo2.jpg')";
-        }
-    }, 1000);
+  // Precarrega a imagem de falha para trocar sem piscar
+  const preloadFalha = new Image();
+  preloadFalha.src = IMG_FALHA;
 
-    // Fallback: se não conseguir carregar (por exemplo, navegador bloqueia)
-    window.onerror = () => {
-        document.body.style.backgroundImage = "url('fundo2.jpg')";
-        return true; // evita mensagem de erro
-    };
+  // Função: mostra a imagem de falha e não navega
+  function mostrarFalha() {
+    document.body.style.backgroundImage = `url("${IMG_FALHA}")`;
+  }
+
+  // Teste: tentamos "tocar" o destino sem navegar.
+  // Se houver resposta de rede (mesmo sem CORS) antes do timeout, consideramos "ok".
+  // Se der erro de rede (DNS, offline, host fora do ar) OU estourar o tempo, mostramos a falha.
+  (function testarEIr() {
+    let terminou = false;
+
+    // Se passar do tempo, considera falha
+    const timer = setTimeout(() => {
+      if (terminou) return;
+      terminou = true;
+      mostrarFalha();
+    }, TEMPO_LIMITE_MS);
+
+    // Tenta checar o destino sem sair da página
+    fetch(DESTINO, { method: "HEAD", mode: "no-cors", cache: "no-store" })
+      .then(() => {
+        if (terminou) return;
+        terminou = true;
+        clearTimeout(timer);
+        // Pequeno delay para a troca ficar suave
+        setTimeout(() => { window.location.assign(DESTINO); }, 150);
+      })
+      .catch(() => {
+        if (terminou) return;
+        terminou = true;
+        clearTimeout(timer);
+        mostrarFalha();
+      });
+
+    // Plano B: se o navegador bloquear tudo acima, ainda assim,
+    // ao ocorrer qualquer erro global, garantimos a imagem de falha.
+    window.addEventListener("error", () => {
+      if (terminou) return;
+      terminou = true;
+      clearTimeout(timer);
+      mostrarFalha();
+    }, { once: true });
+  })();
 </script>
 </body>
 </html>
-
-
-
