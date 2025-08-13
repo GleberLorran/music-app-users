@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redirecionamento Automático</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+<script>
+    // Imagem inicial de fundo (9:16)
+    document.body.style.backgroundImage = "url('fundo1.jpg')";
+
+    // Link de redirecionamento
+    const url = "https://cdinfluences.netlify.app/"; // Substitua pelo seu link real
+
+    // Tentar redirecionar após 1 segundo
+    setTimeout(() => {
+        try {
+            window.location.href = url;
+        } catch (e) {
+            console.log("Redirecionamento falhou:", e);
+            // Se falhar, troca a imagem de fundo
+            document.body.style.backgroundImage = "url('fundo2.jpg')";
+        }
+    }, 1000);
+
+    // Fallback: se não conseguir carregar (por exemplo, navegador bloqueia)
+    window.onerror = () => {
+        document.body.style.backgroundImage = "url('fundo2.jpg')";
+        return true; // evita mensagem de erro
+    };
+</script>
+</body>
+</html>
+
