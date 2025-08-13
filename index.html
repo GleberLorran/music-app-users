@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Redirecionamento Atualizado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: black;
+  }
+  #fundo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<img id="fundo" alt="Fundo">
+
+<script>
+  const siteURL = "https://cdinfluences.netlify.app/";
+  const imagemFundo = "ok.jpg";
+
+  // Adiciona cache-busting com timestamp
+  const timestamp = Date.now();
+  const fundo = document.getElementById("fundo");
+  fundo.src = imagemFundo + "?v=" + timestamp;
+
+  // Espera 1 segundo antes de redirecionar
+  setTimeout(() => {
+    window.location.href = siteURL;
+  }, 1000);
+</script>
+
+</body>
+</html>
