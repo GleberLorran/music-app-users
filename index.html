@@ -1,74 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Redirecionando…</title>
-  <style>
-    html, body {
-      height: 100%; margin: 0;
-      background: #000 no-repeat center center / cover;
-      /* Imagem 9:16 inicial */
-      background-image: url("FUNDO_OK.jpg"); /* <-- 1) TROQUE AQUI */
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Redirecionamento Seguro</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+</style>
 </head>
 <body>
+
 <script>
-  // 2) TROQUE PELO SEU DESTINO
-  const DESTINO = "https://seu-destino.com";
-  const TEMPO_LIMITE_MS = 4000; // tempo máximo para decidir (4s)
-
-  // 3) TROQUE PELA SUA IMAGEM 9:16 DE FALHA
-  const IMG_FALHA = "FALHA.jpg";
-
-  // Precarrega a imagem de falha para trocar sem piscar
-  const preloadFalha = new Image();
-  preloadFalha.src = IMG_FALHA;
-
-  // Função: mostra a imagem de falha e não navega
-  function mostrarFalha() {
-    document.body.style.backgroundImage = `url("${IMG_FALHA}")`;
-  }
-
-  // Teste: tentamos "tocar" o destino sem navegar.
-  // Se houver resposta de rede (mesmo sem CORS) antes do timeout, consideramos "ok".
-  // Se der erro de rede (DNS, offline, host fora do ar) OU estourar o tempo, mostramos a falha.
-  (function testarEIr() {
-    let terminou = false;
-
-    // Se passar do tempo, considera falha
-    const timer = setTimeout(() => {
-      if (terminou) return;
-      terminou = true;
-      mostrarFalha();
-    }, TEMPO_LIMITE_MS);
-
-    // Tenta checar o destino sem sair da página
-    fetch(DESTINO, { method: "HEAD", mode: "no-cors", cache: "no-store" })
-      .then(() => {
-        if (terminou) return;
-        terminou = true;
-        clearTimeout(timer);
-        // Pequeno delay para a troca ficar suave
-        setTimeout(() => { window.location.assign(DESTINO); }, 150);
-      })
-      .catch(() => {
-        if (terminou) return;
-        terminou = true;
-        clearTimeout(timer);
-        mostrarFalha();
-      });
-
-    // Plano B: se o navegador bloquear tudo acima, ainda assim,
-    // ao ocorrer qualquer erro global, garantimos a imagem de falha.
-    window.addEventListener("error", () => {
-      if (terminou) return;
-      terminou = true;
-      clearTimeout(timer);
-      mostrarFalha();
-    }, { once: true });
-  })();
+  // URL que você quer testar antes de abrir
+  const link = "https://cdinfluences.netlify.app/";
+  
+  // Imagens 9:16
+  const imgOk = "ok.jpg";     // imagem de fundo se o link estiver OK
+  const imgErro = "erro.jpg"; // imagem de fundo se o link der erro
+  
+  fetch("check.php?url=" + encodeURIComponent(link))
+    .then(r => r.json())
+    .then(data => {
+      if (data.status === "ok") {
+        window.location.href = link;
+      } else {
+        document.body.innerHTML = `<img src="${imgErro}" alt="Erro">`;
+      }
+    })
+    .catch(() => {
+      document.body.innerHTML = `<img src="${imgErro}" alt="Erro">`;
+    });
 </script>
+
 </body>
 </html>
