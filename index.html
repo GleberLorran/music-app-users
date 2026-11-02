@@ -4,23 +4,32 @@
 <meta charset="UTF-8">
 <title>Redirecionamento Atualizado</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+
 <style>
-  body {
+  /* Pinta o <html> de preto ANTES de qualquer coisa — mata a piscada branca */
+  html {
+    background: #000;
+    color-scheme: dark;
+  }
+  html, body {
     margin: 0;
     padding: 0;
-    background: black;
+    height: 100%;
+    background: #000;
   }
   #fundo {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
     display: block;
+    background: #000; /* fundo preto enquanto a imagem carrega */
   }
 </style>
 </head>
 <body>
 
-<img id="fundo" alt="Fundo">
+<img id="fundo" alt="Fundo" src="ok.jpg">
 
 <script>
   const siteURL = "https://cdinfluences.netlify.app/";
